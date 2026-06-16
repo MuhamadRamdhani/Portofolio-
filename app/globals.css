@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme tokens */
+  --bg: #ffffff;
+  --bg-subtle: #f7f7f7;
+  --text: #1a1a1a;
+  --text-muted: #525252;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  /* Dark theme tokens — near-black background, layered grays */
+  --bg: #1a1a1a;
+  --bg-subtle: #1f1f1f;
+  --text: #f5f5f5;
+  --text-muted: #a3a3a3;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor targets so the sticky navbar doesn't cover headings */
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Thin 0.5px dividers between sections */
+.section-divider {
+  border-top: 0.5px solid var(--border);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tech stack marquee — seamless infinite horizontal scroll                    */
+/* -------------------------------------------------------------------------- */
+.marquee {
+  /* Gradient fade on both edges so logos dissolve in/out */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.marquee__track {
+  /* Track holds two copies of the list; we slide it by exactly 50% so the
+     second copy seamlessly takes over where the first started. */
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+  }
+}
