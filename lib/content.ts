@@ -14,6 +14,14 @@ export type ExperienceItem = {
   active?: boolean;
 };
 
+export type Project = {
+  name: string;
+  description: string;
+  role: string;
+  // Tech names shown as small pills
+  stack: string[];
+};
+
 export type Dict = {
   nav: { label: string; href: string }[];
   hero: {
@@ -26,6 +34,7 @@ export type Dict = {
   stats: { value: string; label: string }[];
   about: { label: string; paragraph: string };
   experience: ExperienceItem[];
+  projects: { eyebrow: string; subtitle: string; items: Project[] };
   tech: { eyebrow: string; subtitle: string };
   contact: { heading: string; cta: string };
 };
@@ -38,6 +47,7 @@ export const dict: Record<Lang, Dict> = {
     nav: [
       { label: "tentang", href: "#about" },
       { label: "pengalaman", href: "#experience" },
+      { label: "proyek", href: "#projects" },
       { label: "stack", href: "#stack" },
       { label: "kontak", href: "#contact" },
     ],
@@ -76,6 +86,47 @@ export const dict: Record<Lang, Dict> = {
           "Mengembangkan antarmuka untuk Sistem Single Sign-On (SSO) berbasis web, merancang prototipe, dan mengintegrasikan frontend dengan backend.",
       },
     ],
+    projects: {
+      eyebrow: "PROYEK",
+      subtitle: "Beberapa proyek yang pernah saya kerjakan",
+      items: [
+        {
+          name: "IT Asset Management (SaaS Multi-tenant)",
+          description:
+            "Platform manajemen aset IT berbasis SaaS multi-tenant dengan isolasi data antar tenant, RBAC, dan autentikasi JWT.",
+          role: "Full-Stack Developer",
+          stack: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
+        },
+        {
+          name: "IT Support Ticketing System",
+          description:
+            "Portal ticketing dukungan IT antar organisasi dengan proteksi sesi berbasis token dan isolasi data antar pengguna.",
+          role: "Full-Stack Developer",
+          stack: ["Next.js", "Laravel", "Laravel Sanctum", "MySQL"],
+        },
+        {
+          name: "Company Profile Dinamis",
+          description:
+            "Pengembangan UI website company profile dengan optimasi performa (SSR/SSG, optimasi image), integrasi frontend ke headless CMS, serta setup analytics & tracking (heatmap, UTM tracking).",
+          role: "Frontend Developer",
+          stack: ["Next.js", "Strapi", "GA4"],
+        },
+        {
+          name: "E-Commerce Fullstack",
+          description:
+            "Aplikasi e-commerce dengan fitur manajemen stok dan laporan penjualan otomatis.",
+          role: "Full-Stack Developer",
+          stack: ["Laravel", "MySQL"],
+        },
+        {
+          name: "Aplikasi Survey Kepuasan",
+          description:
+            "Sistem survei kepuasan dengan visualisasi data interaktif untuk analisis umpan balik.",
+          role: "Full-Stack Developer",
+          stack: ["Laravel", "MySQL"],
+        },
+      ],
+    },
     tech: {
       eyebrow: "TECH STACK",
       subtitle: "Tools yang saya gunakan sehari-hari",
@@ -93,6 +144,7 @@ export const dict: Record<Lang, Dict> = {
     nav: [
       { label: "about", href: "#about" },
       { label: "experience", href: "#experience" },
+      { label: "projects", href: "#projects" },
       { label: "stack", href: "#stack" },
       { label: "contact", href: "#contact" },
     ],
@@ -131,6 +183,47 @@ export const dict: Record<Lang, Dict> = {
           "Developed the interface for a web-based Single Sign-On (SSO) system, designed prototypes, and integrated the frontend with the backend.",
       },
     ],
+    projects: {
+      eyebrow: "PROJECTS",
+      subtitle: "A selection of projects I've built",
+      items: [
+        {
+          name: "IT Asset Management (Multi-tenant SaaS)",
+          description:
+            "Multi-tenant SaaS IT asset management platform with cross-tenant data isolation, RBAC, and JWT authentication.",
+          role: "Full-Stack Developer",
+          stack: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
+        },
+        {
+          name: "IT Support Ticketing System",
+          description:
+            "Cross-organization IT support ticketing portal with token-based session protection and per-user data isolation.",
+          role: "Full-Stack Developer",
+          stack: ["Next.js", "Laravel", "Laravel Sanctum", "MySQL"],
+        },
+        {
+          name: "Dynamic Company Profile",
+          description:
+            "Company profile UI development with performance optimization (SSR/SSG, image optimization), frontend integration with a headless CMS, plus analytics & tracking setup (heatmap, UTM tracking).",
+          role: "Frontend Developer",
+          stack: ["Next.js", "Strapi", "GA4"],
+        },
+        {
+          name: "Full-stack E-Commerce",
+          description:
+            "E-commerce application with inventory management and automated sales reporting.",
+          role: "Full-Stack Developer",
+          stack: ["Laravel", "MySQL"],
+        },
+        {
+          name: "Satisfaction Survey App",
+          description:
+            "Satisfaction survey system with interactive data visualization for feedback analysis.",
+          role: "Full-Stack Developer",
+          stack: ["Laravel", "MySQL"],
+        },
+      ],
+    },
     tech: {
       eyebrow: "TECH STACK",
       subtitle: "Tools I use every day",
