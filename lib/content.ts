@@ -20,6 +20,8 @@ export type Project = {
   role: string;
   // Tech names shown as small pills
   stack: string[];
+  // Optional live URL — makes the whole card clickable with an external-link icon
+  url?: string;
 };
 
 export type Dict = {
@@ -71,12 +73,19 @@ export const dict: Record<Lang, Dict> = {
     },
     experience: [
       {
+        role: "Full-Stack Developer",
+        company: "Sibernetik Integra Data",
+        period: "Jul 2026 – Sekarang",
+        description:
+          "Mengembangkan berbagai produk web full-stack secara end-to-end — merancang dan membangun fitur baru, menangani integrasi sistem, serta memelihara dan meningkatkan keandalan dan performa aplikasi di lingkungan produksi.",
+        active: true,
+      },
+      {
         role: "Full-Stack Developer (Magang)",
         company: "Sibernetik Integra Data",
         period: "Des 2025 – Jun 2026",
         description:
           "Membangun SaaS multi-tenant IT Asset Management dan IT Support Ticketing System. Menangani deployment Docker, worker SMTP, dan migrasi server cPanel ke Ubuntu VPS.",
-        active: true,
       },
       {
         role: "Frontend Developer (Magang)",
@@ -103,6 +112,14 @@ export const dict: Record<Lang, Dict> = {
             "Portal ticketing dukungan IT antar organisasi dengan proteksi sesi berbasis token dan isolasi data antar pengguna.",
           role: "Full-Stack Developer",
           stack: ["Next.js", "Laravel", "Laravel Sanctum", "MySQL"],
+        },
+        {
+          name: "Company Profile",
+          description:
+            "Website company profile full-stack untuk perusahaan konsultan data & software enterprise. Menyajikan katalog layanan, produk, dan portofolio klien dengan rendering SSR/SSG, optimasi performa, dan SEO.",
+          role: "Full-Stack Developer",
+          url: "https://viriyadb.com",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
         },
         {
           name: "Company Profile Dinamis",
@@ -167,12 +184,19 @@ export const dict: Record<Lang, Dict> = {
     },
     experience: [
       {
+        role: "Full-Stack Developer",
+        company: "Sibernetik Integra Data",
+        period: "Jul 2026 – Present",
+        description:
+          "Develop a range of full-stack web products end-to-end — designing and building new features, handling system integrations, and maintaining and improving application reliability and performance in production.",
+        active: true,
+      },
+      {
         role: "Full-Stack Developer (Intern)",
         company: "Sibernetik Integra Data",
         period: "Dec 2025 – Jun 2026",
         description:
           "Built multi-tenant SaaS for IT Asset Management and IT Support Ticketing. Handled Docker deployment, the SMTP worker, and server migration from cPanel to Ubuntu VPS.",
-        active: true,
       },
       {
         role: "Frontend Developer (Intern)",
@@ -199,6 +223,14 @@ export const dict: Record<Lang, Dict> = {
             "Cross-organization IT support ticketing portal with token-based session protection and per-user data isolation.",
           role: "Full-Stack Developer",
           stack: ["Next.js", "Laravel", "Laravel Sanctum", "MySQL"],
+        },
+        {
+          name: "Company Profile",
+          description:
+            "Full-stack company profile site for an enterprise data & software consulting firm. Presents the service catalog, products, and client portfolio with SSR/SSG rendering, performance optimization, and SEO.",
+          role: "Full-Stack Developer",
+          url: "https://viriyadb.com",
+          stack: ["Next.js", "TypeScript", "Tailwind CSS"],
         },
         {
           name: "Dynamic Company Profile",

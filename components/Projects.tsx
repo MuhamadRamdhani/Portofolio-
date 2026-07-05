@@ -62,15 +62,29 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           style={{ background: glow }}
         />
 
-        {/* Arrow that slides in on hover */}
-        <FiArrowUpRight
-          aria-hidden
-          className="absolute right-5 top-5 text-[var(--text-muted)] opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent group-hover:opacity-100"
-          size={18}
-        />
+        {/* External-link arrow — only for projects with a live URL */}
+        {project.url && (
+          <FiArrowUpRight
+            aria-hidden
+            className="absolute right-5 top-5 text-[var(--text-muted)] transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            size={18}
+          />
+        )}
 
         <h3 className="pr-6 text-base font-semibold md:text-lg">
-          {project.name}
+          {project.url ? (
+            // Stretched link: the ::after overlay makes the whole card clickable
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="after:absolute after:inset-0 hover:text-accent"
+            >
+              {project.name}
+            </a>
+          ) : (
+            project.name
+          )}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)] md:text-base">
           {project.description}
