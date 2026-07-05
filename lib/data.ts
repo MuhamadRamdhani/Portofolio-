@@ -16,10 +16,14 @@ import {
   SiDocker,
   SiGit,
   SiGithub,
+  SiGithubactions,
   SiFigma,
+  SiStrapi,
+  SiCloudflare,
   SiGoogleanalytics,
   SiUbuntu,
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 // -----------------------------------------------------------------------------
 // Personal / site basics
@@ -54,6 +58,8 @@ export type TechItem = {
   icon: IconType;
   // Brand color shown on hover
   color: string;
+  // `true` shows a small "learning" badge — honest about skills in progress
+  learning?: boolean;
 };
 
 export const techStack: TechItem[] = [
@@ -68,7 +74,11 @@ export const techStack: TechItem[] = [
   { name: "Docker", icon: SiDocker, color: "#2496ED" },
   { name: "Git", icon: SiGit, color: "#F05032" },
   { name: "GitHub", icon: SiGithub, color: "#ffffff" },
+  { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
   { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+  { name: "Strapi", icon: SiStrapi, color: "#4945FF" },
+  { name: "Cloudflare", icon: SiCloudflare, color: "#F38020" },
   { name: "GA4", icon: SiGoogleanalytics, color: "#E37400" },
   { name: "Ubuntu VPS", icon: SiUbuntu, color: "#E95420" },
+  { name: "Java", icon: FaJava, color: "#F89820", learning: true },
 ];

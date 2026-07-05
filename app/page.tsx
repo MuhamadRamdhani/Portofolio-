@@ -1,3 +1,4 @@
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
@@ -10,6 +11,7 @@ import { Contact } from "@/components/Contact";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main className="mx-auto max-w-3xl px-6">
         <Hero />

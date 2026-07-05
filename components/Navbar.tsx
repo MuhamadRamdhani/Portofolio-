@@ -1,16 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { site } from "@/lib/data";
 import { useLang } from "./LanguageProvider";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 
+// Scroll-spy: reports which section id is currently in the reading band
+// (a slice through the upper-middle of the viewport). Highlights its nav link.
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Of the sections crossing the band, pick the topmost one.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ids.join(",")]);
+
+  return active;
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useLang();
   const navLinks = t.nav;
+  // Section ids are the nav hrefs without the leading "#".
+  const active = useActiveSection(navLinks.map((l) => l.href.slice(1)));
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-md">
@@ -24,16 +54,28 @@ export function Navbar() {
         <div className="flex items-center gap-3 md:gap-7">
           {/* Desktop links */}
           <ul className="hidden items-center gap-7 text-sm text-[var(--text-muted)] md:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="transition-colors hover:text-accent"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = active === link.href.slice(1);
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`relative transition-colors hover:text-accent ${
+                      isActive ? "text-accent" : ""
+                    }`}
+                  >
+                    {link.label}
+                    {/* Underline indicator that grows in under the active link */}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0"
+                      }`}
+                    />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Single language + theme toggle, visible on every breakpoint */}
@@ -59,17 +101,23 @@ export function Navbar() {
       {open && (
         <div className="border-t border-[var(--border)] md:hidden">
           <ul className="flex flex-col px-6 py-2 text-sm text-[var(--text-muted)]">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-3 transition-colors hover:text-accent"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = active === link.href.slice(1);
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={`block py-3 transition-colors hover:text-accent ${
+                      isActive ? "text-accent" : ""
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

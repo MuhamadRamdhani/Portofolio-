@@ -6,7 +6,7 @@ import { SectionReveal } from "./SectionReveal";
 import type { CSSProperties } from "react";
 
 export function TechStack() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   // Duplicate the list so the track can loop without a visible gap. The CSS
   // slides the track by -50%, handing off seamlessly to the second copy.
   const loop = [...techStack, ...techStack];
@@ -37,8 +37,15 @@ export function TechStack() {
                   // aria-hidden on the duplicated half so screen readers read the list once.
                   aria-hidden={i >= techStack.length}
                   style={style}
-                  className="group flex w-32 shrink-0 flex-col items-center justify-center gap-3 rounded-xl border border-[var(--border)] py-6 transition-colors duration-300 hover:border-accent"
+                  className="group relative flex w-32 shrink-0 flex-col items-center justify-center gap-3 rounded-xl border border-[var(--border)] py-6 transition-colors duration-300 hover:border-accent"
                 >
+                  {/* "Learning" ribbon for skills still in progress — honest signal */}
+                  {tech.learning && (
+                    <span className="absolute right-2 top-2 rounded-full border border-accent/40 bg-accent/10 px-1.5 py-0.5 text-[9px] font-medium leading-none text-accent">
+                      {lang === "id" ? "belajar" : "learning"}
+                    </span>
+                  )}
+
                   {/* Grayscale by default → brand color (var(--tech)) on hover */}
                   <Icon
                     size={28}
