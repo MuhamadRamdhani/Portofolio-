@@ -22,6 +22,7 @@ import {
   SiCloudflare,
   SiGoogleanalytics,
   SiUbuntu,
+  SiPostman,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -80,5 +81,6 @@ export const techStack: TechItem[] = [
   { name: "Cloudflare", icon: SiCloudflare, color: "#F38020" },
   { name: "GA4", icon: SiGoogleanalytics, color: "#E37400" },
   { name: "Ubuntu VPS", icon: SiUbuntu, color: "#E95420" },
+  { name: "Postman", icon: SiPostman, color: "#FF6C37" },
   { name: "Java", icon: FaJava, color: "#F89820", learning: true },
 ];
