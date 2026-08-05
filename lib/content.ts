@@ -64,7 +64,7 @@ export const dict: Record<Lang, Dict> = {
     stats: [
       { value: "5+", label: "proyek selesai" },
       { value: "10+", label: "teknologi dikuasai" },
-      { value: "2", label: "pengalaman kerja" },
+      { value: "1", label: "tahun pengalaman kerja" },
     ],
     about: {
       label: "TENTANG SAYA",
@@ -175,7 +175,7 @@ export const dict: Record<Lang, Dict> = {
     stats: [
       { value: "5+", label: "projects completed" },
       { value: "10+", label: "technologies mastered" },
-      { value: "2", label: "work experiences" },
+      { value: "1", label: "year of work experience" },
     ],
     about: {
       label: "ABOUT ME",
